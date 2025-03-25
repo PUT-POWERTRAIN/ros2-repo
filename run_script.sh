@@ -1,4 +1,5 @@
 source /opt/ros/humble/setup.bash
+#source ~/ros2_humble/install/setup.bash
 source ~/vrx_ws/install/setup.bash
 
 #stop any running gazebo instances
@@ -22,6 +23,7 @@ COMMANDS=(
     "rviz2"
     "python3 ./robot_localization.launch.py"
     "ros2 launch vrx_gz usv_joy_teleop.py"
+    "ros2 launch slam_toolbox online_async_launch.py slam_params_file:=params/mapper_params_online_async.yaml"
 )
 
 # Try to find an available terminal emulator
