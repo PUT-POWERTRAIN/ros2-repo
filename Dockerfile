@@ -126,7 +126,7 @@ RUN groupadd -g ${GROUP_ID} rosuser && \
     echo "rosuser ALL=(ALL) ALL" > /etc/sudoers.d/rosuser && \
     chmod 0440 /etc/sudoers.d/rosuser   
 
-    RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     xterm \
     python3-sdformat13 \
     ros-humble-joy-teleop \
@@ -138,7 +138,7 @@ RUN mkdir -p /home/rosuser/vrx_ws/src && \
     cd /home/rosuser/vrx_ws/src && \
     git clone https://github.com/osrf/vrx.git
 RUN cd /home/rosuser/vrx_ws && source /opt/ros/humble/setup.bash && colcon build --merge-install
-
+RUN chown -R rosuser /home/rosuser
 
 USER rosuser
 WORKDIR /home/rosuser/ros_ws
